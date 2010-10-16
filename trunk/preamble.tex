@@ -12,7 +12,7 @@
 %    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 %========================================
-%	苏州大学本科生论文LaTeX模板
+%	苏州大学论文LaTeX模板
 %	2010年 05月 29日 星期六 19:47:22 CST
 %	By telive
 %	Email:	tellive@gmail.com
@@ -20,11 +20,10 @@
 
 %========================================
 %		Packages used in this template
-\usepackage{xeCJK}			% 中文支持
+\usepackage[BoldFont, SlantFont]{xeCJK}			% 中文支持
 \usepackage{pdfpages}		% 插入pdf
 \usepackage{graphicx}		% 图形支持
-\usepackage{amssymb}		% 数学符号
-\usepackage{amsmath}		% 数学符号
+\usepackage{amssymb, amsmath}	% 数学符号
 \usepackage{fancybox}		% 方框文字
 \usepackage{wrapfig}		% 图片文字环绕
 \usepackage{fancyhdr}		% 页眉设置
@@ -36,22 +35,26 @@
 
 %========================================
 %		Settings
-\setCJKmainfont{SimSun}		% 字体设置，宋体
+\setCJKmainfont{SimSun}		% 默认字体设置为宋体
+\setCJKfamilyfont{ZenHei}{WenQuanYi Zen Hei} % Use \CJKfamily{ZenHei} where you need.
 \setlength{\parindent}{2em}	% 首行缩进，2字符
 %\setCJKmainfont{文泉驿正黑}
+\numberwithin{equation}{section}   %　使公式标号为　3.1　的形式
 
 %========================================
 %		Redefine commands 
-\renewcommand\abstractname{摘\ 要}		% 摘要 ,
-\renewcommand{\figurename}{图} 			% 图
-\renewcommand\refname{参考文献}			% 参考文献
-\renewcommand\contentsname{\centerline{目录}}	%目录居中
+\renewcommand\abstractname{\Large \bfseries \CJKfamily{ZenHei}摘\ 要}		% 摘要 ,
+\renewcommand{\figurename}{\CJKfamily{ZenHei} 图} 			% 图
+\renewcommand{\tablename}{\CJKfamily{ZenHei} 表}            % 表
+\renewcommand\refname{\CJKfamily{ZenHei} 参考文献}			% 参考文献
+\renewcommand\contentsname{\centerline{\CJKfamily{ZeiHei} 目录}}	%目录居中
 \renewcommand{\today}{\number\year 年 \number\month 月 \number\day 日}	%中文日期
+%\renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
 
 %========================================
 %		Header Settings
 \pagestyle{fancy}			% 
-\chead{ \bfseries 苏州大学本科生毕业设计(论文)}	% 页眉中部
+\chead{ \bfseries 苏州大学毕业设计(论文)}	% 页眉中部
 \lhead{}		% 页眉左部，设为空
 \rhead{}		% 页眉右部，设为空
 
