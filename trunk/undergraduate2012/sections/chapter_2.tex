@@ -1,0 +1,27 @@
+\section{公式和伪代码}
+\label{chapter2}
+\paragraph
+这是第二章。。。
+
+\subsection{插入公式}
+下面是一个公式：
+\begin{sudaequation}
+(g',g,g^{\alpha},g^{(\alpha^2)},\ldots,g^{(\alpha^q)},g^{(\alpha^{q+2})},\ldots,g^{(\alpha^{2q})})\in G^{2q+1}
+\end{sudaequation}
+公式也可以写在文字中：$g_1=g^\alpha \in G$。
+
+\subsection{插入伪代码}
+\paragraph
+下面的伪代码描述了一个算法：
+\begin{algorithm}[H]
+\caption{算法甲}\label{somealgorithm}
+\begin{algorithmic}[1]
+\Procedure{someAlgorithm}{}
+   \State $\alpha \gets random()$
+   \State $g \gets random()$
+   \State $h \gets random()$
+   \State $g_1 \gets g^\alpha$
+  \State \textbf{return} $(\alpha ,g,g_1,h)$\Comment{这里写注释}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}

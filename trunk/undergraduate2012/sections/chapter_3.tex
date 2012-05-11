@@ -1,0 +1,37 @@
+\section{如何插入表格}
+\label{chapter3}
+\paragraph
+这是第三章。。。。。。。。。
+
+\subsection{插入表格}
+\paragraph
+可以用下面的办法插入表格：
+
+\begin{table}[H]
+  \begin{center}
+    \caption{表格的标题}
+    \begin{tabular}{|c|l|}
+      \hline
+      第一行1 & 第一行2 \\
+      \hline
+      第二行1 & 第二行2 \\
+      \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\subsection{插入较为复杂的表格}
+
+下面是一个稍微复杂一些的表格：
+\begin{table}[H]
+  \begin{center}
+    \caption{复杂的表格标题}
+    \begin{tabular}{|p{0.33\textwidth}|p{0.24\textwidth}|p{0.21\textwidth}|}
+      \hline
+      第一行1 & 第一行2 & 第一行3 \\
+      \hline
+      第二行1 & \multicolumn{2}{|l|}{第二行合并单元格} \\
+      \hline
+    \end{tabular}
+  \end{center}
+\end{table}
