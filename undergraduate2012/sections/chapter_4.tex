@@ -1,0 +1,34 @@
+\section{如何插图}
+\label{chapter4}
+\paragraph
+{\LaTeX}里面可以插入各种图形。
+
+\subsection{插入PNG格式}
+\paragraph
+便携式网络图形（Portable Network Graphics，PNG）是一种无损压缩的位图图形格式，支持索引、灰度、RGB[A]三种颜色方案以及Alpha通道等特性。
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{images/pic.png}
+\caption{PNG格式图片}
+\end{figure}
+
+\subsection{插入EPS格式}
+\paragraph
+EPS（英文全称：Encapsulated PostScript）是PostScript的一种延伸类型。
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{images/pic.eps}
+\caption{EPS格式图片}
+\end{figure}
+
+\subsection{插入PGF宏}
+\paragraph
+PGF是一种可以画出矢量图形的语言。
+
+\begin{figure}[H]
+\centering
+\scalebox{1.2}{\input{images/pic.tex}}
+\caption{PGF宏}
+\end{figure}

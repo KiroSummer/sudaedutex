@@ -1,0 +1,230 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amsfonts,amssymb,graphicx}
+\usepackage[CJKnumber]{xeCJK}
+\usepackage{fontspec}
+\usepackage[xetex]{hyperref}
+\usepackage{xunicode, xltxtra}
+\setCJKfamilyfont{tt}{STSong}
+
+% 这里的字体设置是在Mac OS X下的，其它操作系统请修改成对应的字体
+% 可以用过fc-list命令查看当前系统所有的字体
+\setCJKmainfont[BoldFont=Heiti SC]{STSong} % 中文宋体
+\setmainfont{Times New Roman} % 英文Times New Roman
+
+\XeTeXlinebreaklocale "zh"
+\widowpenalty=10000
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{indentfirst}
+\usepackage[pagestyles]{titlesec}
+\usepackage{titletoc}
+\usepackage[top=2cm,bottom=2cm,left=2.5cm,right=1.5cm]{geometry}%全文页面设置：上2cm，下2cm，左2.5cm，右1.5cm。
+\usepackage[super,square,numbers]{natbib}
+\usepackage{hypernat}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{tikz}
+
+%行间距和段间距设置
+\renewcommand{\paragraph}{\hspace{5pt}}
+\titlespacing*{\paragraph}{0em}{0em}{0em}
+\linespread{1.25}\selectfont %1.2*1.25=1.5
+
+\makeatletter
+\newdimen\bibspace
+\setlength\bibspace{0pt}
+\renewenvironment{thebibliography}[1]{
+  \bibfont\bibsection\parindent \z@\list
+  {\@biblabel{\arabic{NAT@ctr}}}{\@bibsetup{#1}
+    \setcounter{NAT@ctr}{0}}
+  \ifNAT@openbib
+  \renewcommand\newblock{\par}
+  \else
+  \renewcommand\newblock{\hskip .11em \@plus.33em \@minus.07em}
+  \fi
+  \sloppy\clubpenalty4000\widowpenalty4000
+  \sfcode`\.=1000\relax
+  \let\citeN\cite \let\shortcite\cite
+  \let\citeasnoun\cite
+  \itemsep\bibspace
+  \parsep\z@skip 
+}{\def\@noitemerr{
+    \PackageWarning{natbib}
+    {Empty `thebibliography' environment}}
+  \endlist\vskip-\lastskip
+}
+
+\def\enumerate{
+  \ifnum \@enumdepth >\thr@@\@toodeep\else
+  \advance\@enumdepth\@ne
+  \edef\@enumctr{enum\romannumeral\the\@enumdepth}
+  \expandafter
+  \list
+  \csname label\@enumctr\endcsname
+  {\usecounter\@enumctr\def\makelabel##1{\hss\llap{##1}}
+    \addtolength{\parsep}{-5pt}
+    \addtolength{\topsep}{-5pt}
+  }
+  \fi}
+
+\def\itemize{
+  \ifnum \@itemdepth >\thr@@\@toodeep\else
+  \advance\@itemdepth\@ne
+  \edef\@itemitem{labelitem\romannumeral\the\@itemdepth}
+  \expandafter
+  \list
+  \csname\@itemitem\endcsname
+  {\def\makelabel##1{\hss\llap{##1}}
+    \addtolength{\parsep}{-5pt}
+    \addtolength{\topsep}{-5pt}
+  }
+  \fi}
+
+\renewenvironment{description}
+{\list{}{\labelwidth\z@ \itemindent-\leftmargin
+    \let\makelabel\descriptionlabel
+    \addtolength{\parsep}{-5pt}
+    \addtolength{\itemindent}{10pt}
+    \addtolength{\topsep}{-5pt}
+  }
+}
+{\endlist}
+\makeatother
+
+%兼容Word字号
+\newcommand{\chuhao}{\fontsize{42pt}{\baselineskip}\selectfont}     % 初号
+\newcommand{\xiaochuhao}{\fontsize{36pt}{\baselineskip}\selectfont} % 小初号
+\newcommand{\yichu}{\fontsize{32pt}{\baselineskip}\selectfont}      % 一初号
+\newcommand{\yihao}{\fontsize{28pt}{\baselineskip}\selectfont}      % 一号
+\newcommand{\erhao}{\fontsize{21pt}{\baselineskip}\selectfont}      % 二号
+\newcommand{\xiaoerhao}{\fontsize{18pt}{\baselineskip}\selectfont}  % 小二号
+\newcommand{\sanhao}{\fontsize{15.75pt}{\baselineskip}\selectfont}  % 三号
+\newcommand{\xiaosanhao}{\fontsize{15pt}{\baselineskip}\selectfont}  % 小三号
+\newcommand{\sihao}{\fontsize{14pt}{\baselineskip}\selectfont}      % 四号
+\newcommand{\xiaosihao}{\fontsize{12pt}{\baselineskip}\selectfont}  % 小四号
+\newcommand{\wuhao}{\fontsize{10.5pt}{\baselineskip}\selectfont}    % 五号
+\newcommand{\xiaowuhao}{\fontsize{9pt}{\baselineskip}\selectfont}   % 小五号
+\newcommand{\liuhao}{\fontsize{7.875pt}{\baselineskip}\selectfont}  % 六号
+\newcommand{\qihao}{\fontsize{5.25pt}{\baselineskip}\selectfont}    % 七号
+
+\newenvironment{sudaequation}{\begin{equation}\wuhao}{\end{equation}}
+
+\renewcommand\refname{参考文献}
+\renewcommand\tablename{表}
+\renewcommand\figurename{图}
+\floatname{algorithm}{算法}
+
+\renewcommand{\thetable}{\arabic{section}.\arabic{table}}
+\renewcommand{\theequation}{式\arabic{section}.\arabic{equation}}
+\renewcommand{\thefigure}{\arabic{section}.\arabic{figure}}
+\renewcommand{\thealgorithm}{\arabic{section}.\arabic{algorithm}}
+
+
+%在pdf元数据中保存作者等信息
+\hypersetup{
+  pdfauthor = 王烨,
+  pdftitle = 基于身份的即时消息安全系统设计与实现,
+  pdfsubject = 基于身份的即时消息安全系统设计与实现,
+  pdfkeywords = 基于身份加密 即时消息 iOS安全,
+  colorlinks = true,
+  linkcolor = black,
+  citecolor = black,
+  urlcolor = blue
+}
+
+%页眉页脚设置
+\newpagestyle{main}{
+  \sethead{}{\xiaowuhao{苏州大学本科生毕业设计（论文）}}{}
+  \setfoot{}{\thepage}{}\headrule
+}
+
+%一级标题小二号宋体加粗
+%二级标题小三号宋体加粗
+\titleformat{\section}{\centering\xiaoerhao\bfseries}{\thesection}{0.2em}{}
+\titleformat{\subsection}{\raggedright\xiaosanhao\bfseries}{\thesubsection}{0.1em}{}
+\titleformat{\subsubsection}{\raggedright\xiaosihao\bfseries}{\thesubsubsection}{0.1em}{}
+
+%设置中文的一级标题
+%并将二级标题恢复为阿拉伯数字
+\renewcommand{\thesection}{第\CJKnumber{\arabic{section}}章} 
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+
+%文档开始
+\begin{document}
+%目录等采用罗马数字页码
+\pagenumbering{Roman}
+
+\pagestyle{main}
+
+%设置目录格式
+\titlecontents{section}[0pt]{\addvspace{2pt}\filright\bfseries\sihao}{\contentspush{\thecontentslabel\
+  }}{}{\textnormal{\titlerule*[8pt]{.}\contentspage}}
+\titlecontents{subsection}[2em]{\addvspace{2pt}\filright\sihao}{\contentspush{\thecontentslabel\
+  }}{}{\titlerule*[8pt]{.}\contentspage}
+\titlecontents{subsubsection}[4em]{\addvspace{2pt}\filright\sihao}{\contentspush{\thecontentslabel\
+  }}{}{\titlerule*[8pt]{.}\contentspage}
+\renewcommand{\contentsname}{目录}
+\tableofcontents
+
+\newpage
+%正文小四号宋体
+\xiaosihao
+
+%中英文摘要
+\input{sections/abstract.tex}
+
+\newpage
+%正文使用阿拉伯数字页码
+\pagenumbering{arabic}
+\setcounter{page}{1}
+%前言
+\input{sections/preface.tex}
+
+%第一章开始
+\newpage
+\input{sections/chapter_1.tex}
+
+%第二章
+\newpage
+%重置各种计数器（图、表格和算法）
+\setcounter{table}{0}
+\setcounter{figure}{0}
+\setcounter{algorithm}{0}
+\input{sections/chapter_2.tex}
+
+\newpage
+\setcounter{table}{0}
+\setcounter{figure}{0}
+\setcounter{algorithm}{0}
+\input{sections/chapter_3.tex}
+
+\newpage
+\setcounter{table}{0}
+\setcounter{figure}{0}
+\input{sections/chapter_4.tex}
+
+\newpage
+\setcounter{table}{0}
+\setcounter{figure}{0}
+\setcounter{algorithm}{0}
+\input{sections/chapter_5.tex}
+
+\newpage
+\setcounter{table}{0}
+\setcounter{figure}{0}
+\setcounter{algorithm}{0}
+\input{sections/chapter_6.tex}
+
+\newpage
+\addcontentsline{toc}{section}{参考文献}
+\bibliographystyle{sudaunsrt} %设置参考文献样式
+\bibliography{references} %参考文献数据库为references.bib
+
+\newpage
+\input{sections/acknowledgements.tex}
+
+\newpage
+\input{sections/appendix.tex}
+
+\end{document}
